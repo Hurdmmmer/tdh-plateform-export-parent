@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tdh.platform.export.dao.IMqHistoryMapper" >
+  <resultMap id="BaseResultMap" type="tdh.platform.export.entity.MqHistory" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="mqh_ID" property="id" jdbcType="BIGINT" />
+    <result column="mqh_EXCHANGE" property="exchange" jdbcType="VARCHAR" />
+    <result column="mqh_ROUTINGKEY" property="routingkey" jdbcType="VARCHAR" />
+    <result column="mqh_MESSAGE" property="message" jdbcType="VARCHAR" />
+    <result column="mqh_SUCCESS" property="success" jdbcType="INTEGER" />
+    <result column="mqh_PENDING_EXEC" property="pendingExec" jdbcType="INTEGER" />
+    <result column="mqh_CREATED_BY" property="createdBy" jdbcType="INTEGER" />
+    <result column="mqh_CREATED_BY_NAME" property="createdByName" jdbcType="VARCHAR" />
+    <result column="mqh_CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="mqh_UPDATED_BY" property="updatedBy" jdbcType="INTEGER" />
+    <result column="mqh_UPDATED_BY_NAME" property="updatedByName" jdbcType="VARCHAR" />
+    <result column="mqh_UPDATED_TIME" property="updatedTime" jdbcType="TIMESTAMP" />
+    <result column="mqh_VERSION" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    mqh.ID as mqh_ID, mqh.EXCHANGE as mqh_EXCHANGE, mqh.ROUTINGKEY as mqh_ROUTINGKEY, 
+    mqh.MESSAGE as mqh_MESSAGE, mqh.SUCCESS as mqh_SUCCESS, mqh.PENDING_EXEC as mqh_PENDING_EXEC, 
+    mqh.CREATED_BY as mqh_CREATED_BY, mqh.CREATED_BY_NAME as mqh_CREATED_BY_NAME, mqh.CREATED_TIME as mqh_CREATED_TIME, 
+    mqh.UPDATED_BY as mqh_UPDATED_BY, mqh.UPDATED_BY_NAME as mqh_UPDATED_BY_NAME, mqh.UPDATED_TIME as mqh_UPDATED_TIME, 
+    mqh.VERSION as mqh_VERSION
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="tdh.platform.export.entity.MqHistoryExample" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mq_history mqh
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from mq_history mqh
+    where mqh.ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from mq_history
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="tdh.platform.export.entity.MqHistoryExample" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from mq_history mqh
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="tdh.platform.export.entity.MqHistory" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into mq_history (ID, EXCHANGE, ROUTINGKEY, 
+      MESSAGE, SUCCESS, PENDING_EXEC, 
+      CREATED_BY, CREATED_BY_NAME, CREATED_TIME, 
+      UPDATED_BY, UPDATED_BY_NAME, UPDATED_TIME, 
+      VERSION)
+    values (#{id,jdbcType=BIGINT}, #{exchange,jdbcType=VARCHAR}, #{routingkey,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{success,jdbcType=INTEGER}, #{pendingExec,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdByName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=INTEGER}, #{updatedByName,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="tdh.platform.export.entity.MqHistory" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into mq_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="exchange != null" >
+        EXCHANGE,
+      </if>
+      <if test="routingkey != null" >
+        ROUTINGKEY,
+      </if>
+      <if test="message != null" >
+        MESSAGE,
+      </if>
+      <if test="success != null" >
+        SUCCESS,
+      </if>
+      <if test="pendingExec != null" >
+        PENDING_EXEC,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdByName != null" >
+        CREATED_BY_NAME,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedByName != null" >
+        UPDATED_BY_NAME,
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="exchange != null" >
+        #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="routingkey != null" >
+        #{routingkey,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null" >
+        #{success,jdbcType=INTEGER},
+      </if>
+      <if test="pendingExec != null" >
+        #{pendingExec,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedByName != null" >
+        #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="tdh.platform.export.entity.MqHistoryExample" resultType="java.lang.Integer" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select count(*) from mq_history mqh
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update mq_history mqh
+    <set >
+      <if test="record.id != null" >
+        mqh.ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.exchange != null" >
+        mqh.EXCHANGE = #{record.exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routingkey != null" >
+        mqh.ROUTINGKEY = #{record.routingkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.message != null" >
+        mqh.MESSAGE = #{record.message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.success != null" >
+        mqh.SUCCESS = #{record.success,jdbcType=INTEGER},
+      </if>
+      <if test="record.pendingExec != null" >
+        mqh.PENDING_EXEC = #{record.pendingExec,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdBy != null" >
+        mqh.CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdByName != null" >
+        mqh.CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null" >
+        mqh.CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null" >
+        mqh.UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedByName != null" >
+        mqh.UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null" >
+        mqh.UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null" >
+        mqh.VERSION = #{record.version,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update mq_history mqh
+    set mqh.ID = #{record.id,jdbcType=BIGINT},
+      mqh.EXCHANGE = #{record.exchange,jdbcType=VARCHAR},
+      mqh.ROUTINGKEY = #{record.routingkey,jdbcType=VARCHAR},
+      mqh.MESSAGE = #{record.message,jdbcType=VARCHAR},
+      mqh.SUCCESS = #{record.success,jdbcType=INTEGER},
+      mqh.PENDING_EXEC = #{record.pendingExec,jdbcType=INTEGER},
+      mqh.CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      mqh.CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      mqh.CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      mqh.UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      mqh.UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      mqh.UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      mqh.VERSION = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="tdh.platform.export.entity.MqHistory" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update mq_history
+    <set >
+      <if test="exchange != null" >
+        EXCHANGE = #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="routingkey != null" >
+        ROUTINGKEY = #{routingkey,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="success != null" >
+        SUCCESS = #{success,jdbcType=INTEGER},
+      </if>
+      <if test="pendingExec != null" >
+        PENDING_EXEC = #{pendingExec,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdByName != null" >
+        CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedByName != null" >
+        UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null" >
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tdh.platform.export.entity.MqHistory" >
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update mq_history
+    set EXCHANGE = #{exchange,jdbcType=VARCHAR},
+      ROUTINGKEY = #{routingkey,jdbcType=VARCHAR},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      SUCCESS = #{success,jdbcType=INTEGER},
+      PENDING_EXEC = #{pendingExec,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      VERSION = #{version,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

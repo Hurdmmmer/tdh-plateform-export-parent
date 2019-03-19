@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tdh.platform.export.dao.IExportTemplateMapper">
+  <resultMap id="BaseResultMap" type="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <id column="exportTemplate_id" jdbcType="INTEGER" property="id" />
+    <result column="exportTemplate_class_name" jdbcType="VARCHAR" property="className" />
+    <result column="exportTemplate_method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="exportTemplate_file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="exportTemplate_remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="exportTemplate_DELETED" jdbcType="TINYINT" property="deleted" />
+    <result column="exportTemplate_CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="exportTemplate_UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="exportTemplate_CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+    <result column="exportTemplate_CREATED_BY_NAME" jdbcType="VARCHAR" property="createdByName" />
+    <result column="exportTemplate_UPDATED_BY" jdbcType="INTEGER" property="updatedBy" />
+    <result column="exportTemplate_UPDATED_BY_NAME" jdbcType="VARCHAR" property="updatedByName" />
+    <result column="exportTemplate_VERSION" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <result column="exportTemplate_resource" jdbcType="LONGVARBINARY" property="resource" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    exportTemplate.id as exportTemplate_id, exportTemplate.class_name as exportTemplate_class_name, 
+    exportTemplate.method_name as exportTemplate_method_name, exportTemplate.file_name as exportTemplate_file_name, 
+    exportTemplate.remarks as exportTemplate_remarks, exportTemplate.DELETED as exportTemplate_DELETED, 
+    exportTemplate.CREATED_TIME as exportTemplate_CREATED_TIME, exportTemplate.UPDATED_TIME as exportTemplate_UPDATED_TIME, 
+    exportTemplate.CREATED_BY as exportTemplate_CREATED_BY, exportTemplate.CREATED_BY_NAME as exportTemplate_CREATED_BY_NAME, 
+    exportTemplate.UPDATED_BY as exportTemplate_UPDATED_BY, exportTemplate.UPDATED_BY_NAME as exportTemplate_UPDATED_BY_NAME, 
+    exportTemplate.VERSION as exportTemplate_VERSION
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    exportTemplate.resource as exportTemplate_resource
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="tdh.platform.export.entity.ExportTemplateExample" resultMap="ResultMapWithBLOBs">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from export_template exportTemplate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="tdh.platform.export.entity.ExportTemplateExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from export_template exportTemplate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from export_template exportTemplate
+    where exportTemplate.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from export_template
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="tdh.platform.export.entity.ExportTemplateExample">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    delete from export_template exportTemplate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into export_template (id, class_name, method_name, 
+      file_name, remarks, DELETED, 
+      CREATED_TIME, UPDATED_TIME, CREATED_BY, 
+      CREATED_BY_NAME, UPDATED_BY, UPDATED_BY_NAME, 
+      VERSION, resource)
+    values (#{id,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{deleted,jdbcType=TINYINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, 
+      #{createdByName,jdbcType=VARCHAR}, #{updatedBy,jdbcType=INTEGER}, #{updatedByName,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER}, #{resource,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    insert into export_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="methodName != null">
+        method_name,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="deleted != null">
+        DELETED,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdByName != null">
+        CREATED_BY_NAME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedByName != null">
+        UPDATED_BY_NAME,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="resource != null">
+        resource,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdByName != null">
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedByName != null">
+        #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="resource != null">
+        #{resource,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="tdh.platform.export.entity.ExportTemplateExample" resultType="java.lang.Integer">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    select count(*) from export_template exportTemplate
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update export_template exportTemplate
+    <set>
+      <if test="record.id != null">
+        exportTemplate.id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.className != null">
+        exportTemplate.class_name = #{record.className,jdbcType=VARCHAR},
+      </if>
+      <if test="record.methodName != null">
+        exportTemplate.method_name = #{record.methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null">
+        exportTemplate.file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        exportTemplate.remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        exportTemplate.DELETED = #{record.deleted,jdbcType=TINYINT},
+      </if>
+      <if test="record.createdTime != null">
+        exportTemplate.CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null">
+        exportTemplate.UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null">
+        exportTemplate.CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdByName != null">
+        exportTemplate.CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedBy != null">
+        exportTemplate.UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updatedByName != null">
+        exportTemplate.UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null">
+        exportTemplate.VERSION = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.resource != null">
+        exportTemplate.resource = #{record.resource,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update export_template exportTemplate
+    set exportTemplate.id = #{record.id,jdbcType=INTEGER},
+      exportTemplate.class_name = #{record.className,jdbcType=VARCHAR},
+      exportTemplate.method_name = #{record.methodName,jdbcType=VARCHAR},
+      exportTemplate.file_name = #{record.fileName,jdbcType=VARCHAR},
+      exportTemplate.remarks = #{record.remarks,jdbcType=VARCHAR},
+      exportTemplate.DELETED = #{record.deleted,jdbcType=TINYINT},
+      exportTemplate.CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      exportTemplate.UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      exportTemplate.CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      exportTemplate.CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      exportTemplate.UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      exportTemplate.UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      exportTemplate.VERSION = #{record.version,jdbcType=INTEGER},
+      exportTemplate.resource = #{record.resource,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update export_template exportTemplate
+    set exportTemplate.id = #{record.id,jdbcType=INTEGER},
+      exportTemplate.class_name = #{record.className,jdbcType=VARCHAR},
+      exportTemplate.method_name = #{record.methodName,jdbcType=VARCHAR},
+      exportTemplate.file_name = #{record.fileName,jdbcType=VARCHAR},
+      exportTemplate.remarks = #{record.remarks,jdbcType=VARCHAR},
+      exportTemplate.DELETED = #{record.deleted,jdbcType=TINYINT},
+      exportTemplate.CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      exportTemplate.UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      exportTemplate.CREATED_BY = #{record.createdBy,jdbcType=INTEGER},
+      exportTemplate.CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      exportTemplate.UPDATED_BY = #{record.updatedBy,jdbcType=INTEGER},
+      exportTemplate.UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      exportTemplate.VERSION = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update export_template
+    <set>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        DELETED = #{deleted,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdByName != null">
+        CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedByName != null">
+        UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="resource != null">
+        resource = #{resource,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update export_template
+    set class_name = #{className,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=TINYINT},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=INTEGER},
+      resource = #{resource,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="tdh.platform.export.entity.ExportTemplate">
+    <!--
+      WARNING - @mbggenerated
+      auto generated, do not modify.
+    -->
+    update export_template
+    set class_name = #{className,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=TINYINT},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_BY_NAME = #{createdByName,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_BY_NAME = #{updatedByName,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
